@@ -11,7 +11,7 @@
 
       // Redirigir a tu aplicación usando tu esquema
       if (token && type) {
-        window.location.href = `terraplay://auth#access_token=${token}&type=${type}`;
+        window.location.href = `terraplay://auth?access_token=${token}&type=${type}`;
       } else {
         document.body.innerHTML = "<p>Error: no se encontraron parámetros.</p>";
       }
