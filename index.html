@@ -2,19 +2,21 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Redirigiendo...</title>
+    <p>Hemos detectado tu solicitud de recuperación.</p>
+    <button id="openApp">Abrir TerraPlay</button>
+    
     <script>
-      // Extraer access_token y type de la URL original de Supabase
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token');
-      const type = urlParams.get('type');
-
-      // Redirigir a tu aplicación usando tu esquema
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    const type = params.get("type");
+    
+    document.getElementById("openApp").onclick = function () {
       if (token && type) {
-        window.location.href = `terraplay://auth?access_token=${token}&type=${type}`;
+        window.location = `terraplay://auth?access_token=${token}&type=${type}`;
       } else {
-        document.body.innerHTML = "<p>Error: no se encontraron parámetros.</p>";
+        alert("Error: faltan parámetros.");
       }
+    };
     </script>
   </head>
   <body>
