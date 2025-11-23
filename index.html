@@ -2,24 +2,24 @@
 <html>
   <head>
     <meta charset="UTF-8">
-      <p>Hemos detectado tu solicitud de recuperación.</p>
+    <title>TerraPlay Auth Redirect</title>
   </head>
   <body>
-    <p>Hemos detectado tu solicitud de recuperación.</p>
-    <button id="openApp">Abrir TerraPlay</button>
-    
+    <p>Procesando solicitud de recuperación...</p>
+
     <script>
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
-    const type = params.get("type");
-    
-    document.getElementById("openApp").onclick = function () {
-      if (token && type) {
-        window.location = `terraplay://auth?access_token=${token}&type=${type}`;
+      // Tomar TODOS los parámetros (token, type, etc.)
+      const params = new URLSearchParams(window.location.search);
+
+      // Convertirlos a una cadena completa
+      const query = params.toString();
+
+      if (!query) {
+        document.body.innerHTML = "<p>Error: no se encontraron parámetros...</p>";
       } else {
-        alert("Error: faltan parámetros.");
+        // Redirigir a la app usando el esquema terraplay://
+        window.location.href = `terraplay://auth?${query}`;
       }
-    };
     </script>
   </body>
 </html>
